@@ -3,15 +3,6 @@
  * @author Kian Nowrouzi
  */
 
-
-
-
-/* git commands :D
-git add *
-git commit -m "commit name"
-git status
-*/
-
 package main.display;
 
 import java.awt.*;
