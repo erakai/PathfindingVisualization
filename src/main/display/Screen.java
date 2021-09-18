@@ -1,7 +1,9 @@
 package main.display;
 
 import main.core.Updatable;
+import main.entities.Player;
 import main.util.Globals;
+import main.util.Location;
 import main.util.ResourceManager;
 
 import javax.swing.*;
@@ -30,7 +32,8 @@ public class Screen extends JPanel {
                 (int)(Globals.constant("TILE_SIZE") * Globals.constant("ROW_#"))));
         setBackground(Color.GRAY);
 
-        input = new Input();
+        Player player = new Player(new Location(12,12));
+        input = new Input(player);
         this.addKeyListener(input);
         this.addMouseListener(input);
 
