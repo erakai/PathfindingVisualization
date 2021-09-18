@@ -57,7 +57,7 @@ public class Dijkstras {
             for (int v = 0; v < totalNodes; v++)
                 
                 // ipdate the distance value if the new one is less than the old one
-                if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
+                if (!sptSet[v] && graph[u][v] != 0 && graph[u][v] != -1 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
                     dist[v] = dist[u] + graph[u][v];
         }
 
