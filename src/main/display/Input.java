@@ -1,7 +1,7 @@
 package main.display;
 
 import main.entities.Player;
-import main.util.Location;
+import main.util.Globals;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,10 +14,14 @@ import java.awt.event.MouseListener;
  * We can declare what we want our input to do in these methods, and then add Input to Screen to make it work.
  */
 public class Input implements MouseListener, KeyListener {
-    Player p;
-    Input(Player p){
+    private Player p;
+    private TileManager tileManager;
+
+    public Input(Player p, TileManager tileManager){
         this.p = p;
+        this.tileManager = tileManager;
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
         // For example:
@@ -50,7 +54,6 @@ public class Input implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
@@ -58,8 +61,23 @@ public class Input implements MouseListener, KeyListener {
 
     }
 
+    /*
+    Here we get the x and y of the mouse where it was clicked [and RELEASED] and then convert those coordinates
+    to the tile at that location and then sets that tile then runs setWall to make that tile into an
+    immovable and impassable object that is a real force to be reckoned with if I'm going to be completely honest
+    like wow that wall is large and very hard so your punches will not do ANYTHING to it you could probably drop
+    a couple of nuclear bombs in the area and the wall will still be there, suspended in air, because of just how
+    much the sheer power of it's will allows it to defy the laws of physics. Wall.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+
+        int tileX = x/(int) Globals.constant("TILE_SIZE");
+        int tileY = y/(int) Globals.constant("TILE_SIZE");
+
+        tileManager.setWall(tileY, tileX);
 
     }
 
