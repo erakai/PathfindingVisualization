@@ -2,8 +2,13 @@ package main.display;
 
 import main.util.Globals;
 import main.util.Location;
+import model.BreadthFirst;
+import model.service.Node;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /** Basically just a grid setup of tiles for individual/mass manipulation and different colors and organization
  *
@@ -20,6 +25,12 @@ public class TileManager implements Renderable {
         tileArray= new Tile[rows][columns];
 
         populateTiles();
+
+        HashMap<Tile, Node> graph = new HashMap<>();
+        Node start = new Node(graph, this, this.getTile(0,0));
+        Node goal = new Node(graph, this, this.getTile(10,10));
+        List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
+        for (Tile t: tiles) t.setTileColor(Color.RED);
     }
 
     private void populateTiles() {

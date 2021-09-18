@@ -13,15 +13,16 @@ import java.util.*;
 public class BreadthFirst {
 
     public static List<Tile> runFloodFill(Node start, Node goal) {
-        Node current = start;
+        Node current;
         Queue<Node> frontier = new LinkedList<>();
         Map<Node, Node> path = new HashMap<>();
 
-        frontier.add(current);
+        path.put(start, null);
+        frontier.add(start);
         while (!frontier.isEmpty()) {
             current = frontier.poll();
-            if (current == goal) break;
-            for (Node n: current.neighbors().keySet()) {
+            if (current.equals(goal)) break;
+            for (Node n: current.neighbors()) {
                 if (!path.containsValue(n)) {
                     frontier.add(n);
                     path.put(n, current);
@@ -29,11 +30,11 @@ public class BreadthFirst {
             }
         }
 
-        current = goal;
+        Node point = goal;
         List<Node> pathBack = new ArrayList<>();
-        while (current != start) {
-            pathBack.add(current);
-            current = path.get(current);
+        while (!point.equals(start)) {
+            pathBack.add(point);
+            point = path.get(point);
         }
         pathBack.add(start);
 

@@ -5,6 +5,8 @@ import main.entities.Player;
 import main.util.Globals;
 import main.util.Location;
 import main.util.ResourceManager;
+import model.BreadthFirst;
+import model.service.Node;
 
 import javax.swing.*;
 import java.awt.*;
