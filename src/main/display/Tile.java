@@ -11,6 +11,15 @@ import java.awt.*;
 
 public class Tile {
     private int x,y,width,height;
+    private Color tileColor;
+
+    public Color getTileColor() {
+        return tileColor;
+    }
+
+    public void setTileColor(Color tileColor) {
+        this.tileColor = tileColor;
+    }
 
     public void drawMe(Graphics g) {
         g.fillRect(x,y,width,height);
