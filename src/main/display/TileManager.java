@@ -1,9 +1,3 @@
-/** Basically just a grid setup of tiles for individual/mass manipulation and different colors and organization
- *
- * @author Kian Nowrouzi
- */
-
-
 package main.display;
 
 import main.util.Globals;
@@ -11,6 +5,10 @@ import main.util.Location;
 
 import java.awt.*;
 
+/** Basically just a grid setup of tiles for individual/mass manipulation and different colors and organization
+ *
+ * @author Kian Nowrouzi
+ */
 public class TileManager implements Renderable {
     private static Tile[][] tileArray;
     private static int rows, columns, fullSize;
