@@ -3,6 +3,18 @@ package main.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * To use globals:
+ *
+ * Anything in the static{} block is loaded into the constants map (a dictionary) at the start of the program. You can
+ * access any of these constants by using the constant(name) method.
+ *
+ * If you need to create a constant "HEALTH" call:
+ * Globals.createConstant("HEALTH", 30.0);
+ *
+ * If you need to retrieve "HEALTH" call:
+ * Globals.constant("HEALTH");
+ */
 public class Globals {
     private Globals() {}
 
