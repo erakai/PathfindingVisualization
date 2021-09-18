@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * To use globals:
+ * To use global variables (ie variables that can be accessed from everywhere and don't change):
  *
  * Anything in the static{} block is loaded into the constants map (a dictionary) at the start of the program. You can
  * access any of these constants by using the constant(name) method.
