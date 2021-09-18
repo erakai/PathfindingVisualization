@@ -7,7 +7,7 @@ time. Each enemy occupies a separate quadrant and is controlled by a separate al
 ## Algorithms
 - Dijkstra
 - A*
-- Greedy Best-First
+- Breadth First Search
 - 
 
 ## Technology
