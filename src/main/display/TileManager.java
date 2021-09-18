@@ -17,8 +17,6 @@ public class TileManager {
         tileArray= new Tile[rows][columns];
     }
 
-
-
     //accessors
     public static int getRows() {
         return rows;
