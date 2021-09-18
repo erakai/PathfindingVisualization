@@ -1,4 +1,6 @@
 package main.display;
 
-public class Screen {
+import javax.swing.*;
+
+public class Screen extends JPanel {
 }
