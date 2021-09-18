@@ -1,7 +1,9 @@
 package main.display;
 
 import main.core.Updatable;
+import main.entities.Player;
 import main.util.Globals;
+import main.util.Location;
 import main.util.ResourceManager;
 
 import javax.swing.*;
@@ -30,23 +32,32 @@ public class Screen extends JPanel {
                 (int)(Globals.constant("TILE_SIZE") * Globals.constant("ROW_#"))));
         setBackground(Color.GRAY);
 
-        input = new Input();
-        this.addKeyListener(input);
-        this.addMouseListener(input);
+        Player player = new Player(new Location(12,12));
 
         tileManager = new TileManager();
         addRenderable(tileManager);
+
+        input = new Input(player, tileManager);
+        this.addKeyListener(input);
+        this.addMouseListener(input);
 
         try {
             ResourceManager.initialize("resources");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                gameLoop();
+            }
+        }).start();
     }
 
     /**
      * The paintComponent method is called multiple times a second and draws whatever we put inside.
-     * #kian note: JPanel defaults to executing paintComponent multiple times per second
+     *
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -61,6 +72,19 @@ public class Screen extends JPanel {
 
         updatableList.removeAll(updatableRemove);
         updatableList.clear();
+    }
+
+    //runs the game so the screen is updating infinitely
+    public void gameLoop() {
+        while (true) {
+            repaint();
+
+            try {
+                Thread.sleep(1000 / (int) (Globals.constant("FRAMES_PER_SECOND")));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void addUpdatable(Updatable u) {

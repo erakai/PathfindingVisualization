@@ -55,4 +55,10 @@ public class TileManager implements Renderable {
     public int getFullSize() {
         return fullSize;
     }
+
+    //makes a tile green and impassable (a wall)
+    public void setWall(int row, int column) {
+        tileArray[column][row].setTileColor(Color.green);
+        tileArray[column][row].setOccupied(true);
+    }
 }

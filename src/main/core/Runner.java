@@ -10,6 +10,8 @@ public class Runner {
         JFrame frame = new JFrame("Pathfinding Visualization");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Screen instance = new Screen();
+        instance.setFocusable(true);
+        instance.setLayout(null);
         frame.add(instance);
         frame.pack();
         frame.setVisible(true);
