@@ -1,4 +1,12 @@
-/*
+/**Tile class, just rectangles with different shapes, colors, and locations
+ *
+ * @author Kian Nowrouzi
+ */
+
+
+
+
+/* git commands :D
 git add *
 git commit -m "commit name"
 git status
@@ -13,6 +21,7 @@ public class Tile {
     private int x,y,width,height;
     private Color tileColor;
 
+    //accessors and mutators
     public Color getTileColor() {
         return tileColor;
     }
