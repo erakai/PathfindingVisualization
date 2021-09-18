@@ -30,20 +30,37 @@ public class Input implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        switch( keyCode ) {
-            case KeyEvent.VK_UP:
-                p.getLocation().setY(p.getLocation().getY()+2);
-                break;
-            case KeyEvent.VK_DOWN:
-                p.getLocation().setY(p.getLocation().getY()-2);
-                break;
-            case KeyEvent.VK_LEFT:
-                p.getLocation().setX(p.getLocation().getX()-2);
-                break;
-            case KeyEvent.VK_RIGHT :
-                p.getLocation().setX(p.getLocation().getX()+2);
-                break;
+        System.out.println("KEY PRESSED HOLY SHIT");
+        System.out.println((int)Globals.constant("TILE_SIZE") * (int)Globals.constant("COLUMN_#"));
+        if (e.getKeyCode() == e.VK_UP) {
+            if (p.getLocation().getY() <= 0)
+            {} else {
+                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
+                p.getLocation().setY(p.getLocation().getY() - 32);
+            }
+        }
+        //(p.getLocation().getY() <= 0)
+        if (e.getKeyCode() == e.VK_DOWN) {
+            if (p.getLocation().getY() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("ROW_#")-1))
+            {} else {
+                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
+                p.getLocation().setY(p.getLocation().getY() + 32);
+            }
+        }
+        if(e.getKeyCode() == e.VK_LEFT) {
+            if (p.getLocation().getX() <= 0)
+            {} else {
+                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
+                p.getLocation().setX(p.getLocation().getX() - 32);
+            }
+        }
+        //works
+        if (e.getKeyCode() == e.VK_RIGHT) {
+            if (p.getLocation().getX() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("COLUMN_#")-1))
+            {} else {
+                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
+                p.getLocation().setX(p.getLocation().getX() + 32);
+            }
         }
     }
 

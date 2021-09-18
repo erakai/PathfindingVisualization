@@ -33,10 +33,9 @@ public class Screen extends JPanel {
         setBackground(Color.GRAY);
 
         Player player = new Player(new Location(12,12));
-
         tileManager = new TileManager();
         addRenderable(tileManager);
-
+        addRenderable(player);
         input = new Input(player, tileManager);
         this.addKeyListener(input);
         this.addMouseListener(input);
