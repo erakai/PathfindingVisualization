@@ -7,7 +7,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
+ *  A basic Entity template class that knows its location, image, and name.
  *
+ *  To create an Entity class based off this:
+ *
+ *  public class EntityName extends Entity {
+ *      public EntityName (Location location) {
+ *          super("EntityName", location, ResourceManager.getSprite("EntityName"));
+ *      }
+ *  }
  */
 public abstract class Entity implements Renderable {
     private Location location;

@@ -7,6 +7,8 @@ import javax.swing.*;
 public class Runner {
 
     public static void main(String[] args) {
+        Game game = new Game();
+
         JFrame frame = new JFrame("Pathfinding Visualization");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Screen instance = new Screen();
