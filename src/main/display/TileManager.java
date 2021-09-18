@@ -34,7 +34,6 @@ public class TileManager implements Renderable {
     public void render(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                System.out.printf("Rendering Tile %s%s\n", i, j);
                 getTile(i, j).render(g);
             }
         }

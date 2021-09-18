@@ -46,6 +46,7 @@ public class Screen extends JPanel {
 
     /**
      * The paintComponent method is called multiple times a second and draws whatever we put inside.
+     * #kian note: JPanel defaults to executing paintComponent multiple times per second
      */
     @Override
     protected void paintComponent(Graphics g) {
