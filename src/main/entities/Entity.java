@@ -1,5 +1,6 @@
 package main.entities;
 
+import main.core.Updatable;
 import main.display.Renderable;
 import main.util.Location;
 
@@ -7,9 +8,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
+ *  A basic Entity template class that knows its location, image, and name.
  *
+ *  To create an Entity class based off this:
+ *
+ *  public class EntityName extends Entity {
+ *      public EntityName (Location location) {
+ *          super("EntityName", location, ResourceManager.getSprite("EntityName"));
+ *      }
+ *  }
  */
-public abstract class Entity implements Renderable {
+public abstract class Entity implements Renderable, Updatable {
     private Location location;
     private BufferedImage image;
     private String name;
