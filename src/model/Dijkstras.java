@@ -4,7 +4,7 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-public class Dikjstras {
+public class Dijkstras {
     static final int totalNodes = 9;
     int minDistance(int dist[], Boolean sptSet[])
     {
@@ -80,7 +80,7 @@ public class Dikjstras {
                 { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
                 { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
         };
-        ShortestPath t = new ShortestPath();
+        Dijkstras t = new Dijkstras();
         t.dijkstra(graph, 0);
     }
 }
