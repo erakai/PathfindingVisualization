@@ -55,4 +55,9 @@ public class TileManager implements Renderable {
     public int getFullSize() {
         return fullSize;
     }
+
+    public void setWall(int row, int column) {
+        tileArray[row][column].setTileColor(Color.gray);
+        tileArray[row][column].setOccupied(true);
+    }
 }
