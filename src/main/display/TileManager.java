@@ -17,6 +17,10 @@ public class TileManager {
         tileArray= new Tile[rows][columns];
     }
 
+    public Tile getTile(int row, int column) {
+        return tileArray[row][column];
+    }
+
     //accessors
     public static int getRows() {
         return rows;

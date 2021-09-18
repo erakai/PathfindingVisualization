@@ -8,9 +8,18 @@ package main.display;
 import java.awt.*;
 
 
-public class Tile {
+public class Tile implements Renderable{
     private int x,y,width,height;
     private Color tileColor;
+    private boolean occupied;
+
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
 
     //accessors and mutators
     public Color getTileColor() {
@@ -21,7 +30,8 @@ public class Tile {
         this.tileColor = tileColor;
     }
 
-    public void drawMe(Graphics g) {
+    //drawMe
+    public void render(Graphics g) {
         g.fillRect(x,y,width,height);
     }
 
