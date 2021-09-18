@@ -33,6 +33,10 @@ public class ResourceManager {
 
     private static void loadSprites(String path) throws IOException {
         File folder = new File(path);
+        if (folder.listFiles() == null) {
+            System.out.println("Unable to load the /resources/ folder.");
+            return;
+        }
 
         for (File f: folder.listFiles()) {
             if (f.isFile() && f.getName().endsWith(".png")) {

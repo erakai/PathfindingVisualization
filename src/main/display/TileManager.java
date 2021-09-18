@@ -10,10 +10,10 @@ import java.awt.*;
  * @author Kian Nowrouzi
  */
 public class TileManager implements Renderable {
-    private static Tile[][] tileArray;
-    private static int rows, columns, fullSize;
+    private Tile[][] tileArray;
+    private int rows, columns, fullSize;
 
-    private TileManager() {
+    public TileManager() {
         rows = (int) Globals.constant("ROW_#");
         columns = (int) Globals.constant("COLUMN_#");
         fullSize = rows*columns;
@@ -34,6 +34,7 @@ public class TileManager implements Renderable {
     public void render(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
+                System.out.printf("Rendering Tile %s%s\n", i, j);
                 getTile(i, j).render(g);
             }
         }
@@ -44,15 +45,15 @@ public class TileManager implements Renderable {
     }
 
     //accessors
-    public static int getRows() {
+    public int getRows() {
         return rows;
     }
 
-    public static int getColumns() {
+    public int getColumns() {
         return columns;
     }
 
-    public static int getFullSize() {
+    public int getFullSize() {
         return fullSize;
     }
 }

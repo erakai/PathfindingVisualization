@@ -16,7 +16,7 @@ public class Location {
      * screen was (32, 32) if tiel size was 32.
      */
     public Location(int tileX,int tileY) {
-        this((int) (tileX / Globals.constant("TILE_SIZE")), (int) (tileY / Globals.constant("TILE_SIZE"))
+        this((int) (tileX * Globals.constant("TILE_SIZE")), (int) (tileY * Globals.constant("TILE_SIZE"))
                 , tileX, tileY);
     }
 

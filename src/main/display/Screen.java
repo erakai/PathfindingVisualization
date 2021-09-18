@@ -21,6 +21,7 @@ public class Screen extends JPanel {
     private final List<Updatable> updatableList = new ArrayList<>();
     private final List<Updatable> updatableRemove = new ArrayList<>();
 
+    private TileManager tileManager;
     private Input input;
 
     public Screen() {
@@ -32,6 +33,9 @@ public class Screen extends JPanel {
         input = new Input();
         this.addKeyListener(input);
         this.addMouseListener(input);
+
+        tileManager = new TileManager();
+        addRenderable(tileManager);
 
         try {
             ResourceManager.initialize("resources");
