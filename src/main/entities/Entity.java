@@ -1,5 +1,6 @@
 package main.entities;
 
+import main.core.Updatable;
 import main.display.Renderable;
 import main.util.Location;
 
@@ -17,7 +18,7 @@ import java.awt.image.BufferedImage;
  *      }
  *  }
  */
-public abstract class Entity implements Renderable {
+public abstract class Entity implements Renderable, Updatable {
     private Location location;
     private BufferedImage image;
     private String name;
