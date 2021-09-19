@@ -32,7 +32,7 @@ public class Input implements MouseListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == e.VK_UP) {
-            if (player.getLocation().getY() <= 0) {
+            if (player.getLocation().getY() >= 0) {
                 player.getLocation().setY(player.getLocation().getY() - 32);
             }
         }

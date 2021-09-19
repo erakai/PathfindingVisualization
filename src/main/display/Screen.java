@@ -1,6 +1,7 @@
 package main.display;
 
 import main.core.Updatable;
+import main.display.hud.HUDManager;
 import main.entities.Enemy;
 import main.entities.EntitySpawner;
 import main.entities.Player;
@@ -27,6 +28,7 @@ public class Screen extends JPanel {
 
     private TileManager tileManager;
     private EntitySpawner spawner;
+    private HUDManager hud;
     private Input input;
 
     public Screen() {
@@ -41,6 +43,10 @@ public class Screen extends JPanel {
         spawner = new EntitySpawner();
         addRenderable(spawner);
         addUpdatable(spawner);
+
+        hud = new HUDManager();
+        addRenderable(hud);
+        addUpdatable(hud);
 
         input = new Input(spawner.getPlayer(), tileManager);
         this.addKeyListener(input);
