@@ -52,7 +52,7 @@ public class Tile implements Renderable{
 
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
-        setTileColor(occupied ? Color.lightGray : Color.BLACK);
+        setTileColor(occupied ? Color.pink : Color.BLACK);
     }
 
     public Color getTileColor() {

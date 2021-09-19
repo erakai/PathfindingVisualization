@@ -26,7 +26,7 @@ public class EntitySpawner implements Updatable, Renderable {
         Enemy enemy3 = new Enemy(new Location(0,(int) Globals.constant("ROW_#")-1),
                 EntityController.Controller.AStar, TileManager.Quadrant.BL);
         Enemy enemy4 = new Enemy(new Location((int) Globals.constant("COLUMN_#")-1,
-                (int) Globals.constant("ROW_#")-1), EnemyController.Controller.KianStar,
+                (int) Globals.constant("ROW_#")-1), EntityController.Controller.KianStar,
                 TileManager.Quadrant.BR);
 
         enemies.add(enemy1);
