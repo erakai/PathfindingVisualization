@@ -18,48 +18,48 @@ public class Node {
             Node goal = new Node(graph, tileManager, tileManager.getTile(10,5));
             List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
      */
-    public Node(HashMap<Tile, Node> graph, TileManager manager, Tile t) {
+    public Node(HashMap<Tile, Node> graph, Tile[][] array, Tile t) {
         this.tile = t;
         neighbors = new ArrayList<>();
         graph.put(t, this);
 
         if (t.getLocation().getTileY() > 0) {
-            Tile topNeighbor = manager.getTile(t.getLocation().getTileX(), t.getLocation().getTileY() - 1);
+            Tile topNeighbor = array[t.getLocation().getTileX()][t.getLocation().getTileY() - 1];
             if (!topNeighbor.isOccupied()) {
                 if (graph.containsKey(topNeighbor)) {
                     neighbors.add(graph.get(topNeighbor));
                 } else {
-                    neighbors.add(new Node(graph, manager, topNeighbor));
+                    neighbors.add(new Node(graph, array, topNeighbor));
                 }
             }
         }
         if (t.getLocation().getTileX() > 0) {
-            Tile leftNeighbor = manager.getTile(t.getLocation().getTileX() - 1, t.getLocation().getTileY());
+            Tile leftNeighbor = array[t.getLocation().getTileX() - 1][t.getLocation().getTileY()];
             if (!leftNeighbor.isOccupied()) {
                 if (graph.containsKey(leftNeighbor)) {
                     neighbors.add(graph.get(leftNeighbor));
                 } else if (!leftNeighbor.isOccupied()) {
-                    neighbors.add(new Node(graph, manager, leftNeighbor));
+                    neighbors.add(new Node(graph, array, leftNeighbor));
                 }
             }
         }
-        if (t.getLocation().getTileY() < manager.getRows()-1) {
-            Tile bottomNeighbor = manager.getTile(t.getLocation().getTileX(), t.getLocation().getTileY() + 1);
+        if (t.getLocation().getTileY() < array.length-1) {
+            Tile bottomNeighbor = array[t.getLocation().getTileX()][t.getLocation().getTileY() + 1];
             if (!bottomNeighbor.isOccupied()) {
                 if (graph.containsKey(bottomNeighbor)) {
                     neighbors.add(graph.get(bottomNeighbor));
                 } else if (!bottomNeighbor.isOccupied()) {
-                    neighbors.add(new Node(graph, manager, bottomNeighbor));
+                    neighbors.add(new Node(graph, array, bottomNeighbor));
                 }
             }
         }
-        if (t.getLocation().getTileX() < manager.getColumns()-1) {
-            Tile rightNeighbor = manager.getTile(t.getLocation().getTileX()+1, t.getLocation().getTileY());
+        if (t.getLocation().getTileX() < array[0].length -1) {
+            Tile rightNeighbor = array[t.getLocation().getTileX()+1][t.getLocation().getTileY()];
             if (!rightNeighbor.isOccupied()) {
                 if (graph.containsKey(rightNeighbor)) {
                     neighbors.add(graph.get(rightNeighbor));
                 } else if (!rightNeighbor.isOccupied()) {
-                    neighbors.add(new Node(graph, manager, rightNeighbor));
+                    neighbors.add(new Node(graph, array, rightNeighbor));
                 }
             }
         }

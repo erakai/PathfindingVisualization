@@ -3,6 +3,7 @@ package main.display;
 import main.core.Updatable;
 import main.display.hud.HUDManager;
 import main.entities.Enemy;
+import main.entities.EnemyController;
 import main.entities.EntitySpawner;
 import main.entities.Player;
 import main.util.Globals;
@@ -64,6 +65,7 @@ public class Screen extends JPanel {
 
         new Thread(this::gameLoop).start();
 
+        spawner.visualize(tileManager);
     }
 
     /**

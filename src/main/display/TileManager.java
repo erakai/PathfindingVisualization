@@ -19,6 +19,10 @@ public class TileManager implements Renderable {
     private Tile[][] TLArray, BLArray, TRArray, BRArray;
     private final int rows, columns;
 
+    public enum Quadrant {
+        TL, BL, TR, BR;
+    }
+
     public TileManager() {
         rows = (int) Globals.constant("ROW_#");
         columns = (int) Globals.constant("COLUMN_#");
@@ -28,9 +32,23 @@ public class TileManager implements Renderable {
         populateSubArrays();
     }
 
+    public Tile[][] getSubArray(Quadrant quad) {
+        switch (quad) {
+            case TL:
+                return getTLArray();
+            case BL:
+                return getBLArray();
+            case TR:
+                return getTRArray();
+            case BR:
+                return getBRArray();
+        }
+        return null;
+    }
+
     private void populateSubArrays() {
-        int subRows = ((int) Globals.constant("ROW_#") - 1) / 4;
-        int subColumns = ((int) Globals.constant("COLUMN_#") - 1) / 4;
+        int subRows = ((int) Globals.constant("ROW_#") - 1) / 2;
+        int subColumns = ((int) Globals.constant("COLUMN_#") - 1) / 2;
         TLArray = new Tile[subColumns][subRows];
         BLArray = new Tile[subColumns][subRows];
         TRArray = new Tile[subColumns][subRows];
