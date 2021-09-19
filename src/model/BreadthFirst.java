@@ -32,7 +32,7 @@ public class BreadthFirst {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                n.tile().setTileColor(Color.lightGray);
+                n.tile().setTileColor(Color.darkGray);
 
                 if (!path.containsKey(n)) {
                     frontier.add(n);

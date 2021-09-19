@@ -35,13 +35,13 @@ public class EnemyController {
 
     private static void runBreadthFirstVisualization(TileManager tileManager, TileManager.Quadrant quad) {
         new Thread(() -> {
-//            try {
-//                Thread.sleep(15000);
-//                System.out.println("5 more seconds");
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Thread.sleep(10000);
+                System.out.println("3 more seconds");
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Tile[][] array = tileManager.getSubArray(quad);
 
             HashMap<Tile, Node> graph = new HashMap<>();
@@ -49,8 +49,6 @@ public class EnemyController {
             Node goal = new Node(graph, array, array[array[0].length-1][array.length-1]);
             List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
             for (Tile t: tiles) t.setTileColor(Color.RED);
-            start.tile().setTileColor(Color.GREEN);
-            goal.tile().setTileColor(Color.BLUE);
         }).start();
     }
 

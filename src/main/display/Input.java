@@ -89,6 +89,8 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
         try {
             if (!tileManager.getTile(tileX, tileY).isOccupied()) {
                 tileManager.setWall(tileY, tileX);
+            } else {
+                tileManager.getTile(tileX, tileY).setOccupied(false);
             }
         } catch (Exception ignored) {}
     }
@@ -115,6 +117,8 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
             try {
                 if (!tileManager.getTile(tileX, tileY).isOccupied()) {
                     tileManager.setWall(tileY, tileX);
+                } else {
+                    tileManager.getTile(tileX, tileY).setOccupied(false);
                 }
             } catch (Exception ignored) {}
         }
