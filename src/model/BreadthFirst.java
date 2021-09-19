@@ -7,6 +7,7 @@ import model.service.Node;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Simplest pathfinding Algorithm
@@ -32,7 +33,7 @@ public class BreadthFirst {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                n.tile().setTileColor(Color.darkGray);
+                n.tile().setTileColor(Color.lightGray);
 
                 if (!path.containsKey(n)) {
                     frontier.add(n);
