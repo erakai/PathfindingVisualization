@@ -25,12 +25,6 @@ public class TileManager implements Renderable {
         tileArray= new Tile[rows][columns];
 
         populateTiles();
-
-        HashMap<Tile, Node> graph = new HashMap<>();
-        Node start = new Node(graph, this, this.getTile(0,0));
-        Node goal = new Node(graph, this, this.getTile(10,10));
-        List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
-        for (Tile t: tiles) t.setTileColor(Color.RED);
     }
 
     private void populateTiles() {

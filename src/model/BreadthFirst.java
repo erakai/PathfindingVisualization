@@ -4,7 +4,9 @@ import main.display.Tile;
 import model.service.Direction;
 import model.service.Node;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Simplest pathfinding Algorithm
@@ -20,10 +22,19 @@ public class BreadthFirst {
         path.put(start, null);
         frontier.add(start);
         while (!frontier.isEmpty()) {
-            current = frontier.poll();
+            current = frontier.remove();
             if (current.equals(goal)) break;
             for (Node n: current.neighbors()) {
-                if (!path.containsValue(n)) {
+
+                n.tile().setTileColor(Color.BLUE);
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                n.tile().setTileColor(Color.lightGray);
+
+                if (!path.containsKey(n)) {
                     frontier.add(n);
                     path.put(n, current);
                 }
