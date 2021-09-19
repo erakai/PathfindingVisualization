@@ -27,6 +27,16 @@ public class Location {
         this.tileY = tileY;
     }
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "x=" + x +
+                ", y=" + y +
+                ", tileX=" + tileX +
+                ", tileY=" + tileY +
+                '}';
+    }
+
     public int getX() {
         return x;
     }

@@ -8,10 +8,13 @@ import main.entities.Player;
 import main.util.Globals;
 import main.util.Location;
 import main.util.ResourceManager;
+import model.BreadthFirst;
+import model.service.Node;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -51,6 +54,7 @@ public class Screen extends JPanel {
         input = new Input(spawner.getPlayer(), tileManager);
         this.addKeyListener(input);
         this.addMouseListener(input);
+        this.addMouseMotionListener(input);
 
         try {
             ResourceManager.initialize("resources");
@@ -58,12 +62,8 @@ public class Screen extends JPanel {
             e.printStackTrace();
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                gameLoop();
-            }
-        }).start();
+        new Thread(this::gameLoop).start();
+
     }
 
     /**
@@ -95,6 +95,7 @@ public class Screen extends JPanel {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
