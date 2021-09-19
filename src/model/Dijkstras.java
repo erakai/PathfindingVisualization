@@ -4,34 +4,25 @@ import main.display.Tile;
 import model.service.Node;
 
 import java.awt.*;
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class Dijkstras {
 
-    private static HashMap<Node, Integer> initVertices(HashMap<Node, Integer> map) {
-        boolean updated = false;
-        for (Node node: map.keySet()) {
-            for (Node neigh: node.neighbors()) {
-                if (!map.containsKey(neigh)) {
-                    map.put(neigh, Integer.MAX_VALUE);
-                    updated = true;
-                }
-            }
+    private static void initVertices(HashMap<Node, Integer> map, Collection<Node> graph) {
+        for (Node n: graph) {
+            map.put(n, Integer.MAX_VALUE);
         }
-
-        if (updated) initVertices(map);
-        return map;
     }
 
-    public static List<Tile> runDijkstras (Node start, Node goal) {
+    public static List<Tile> runDijkstras (Node start, Node goal, Collection<Node> graph) {
         HashMap<Node, Integer> nodeCosts = new HashMap<>();
         List<Node> visitedNodes = new ArrayList<>();
 
         nodeCosts.put(start, 0);
-        nodeCosts = initVertices(nodeCosts);
+        initVertices(nodeCosts, graph);
 
         nodeCosts.put(start, 0);
         visitedNodes.add(start);

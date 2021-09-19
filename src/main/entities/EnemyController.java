@@ -36,21 +36,14 @@ public class EnemyController {
 
     private static void runBreadthFirstVisualization(TileManager tileManager, TileManager.Quadrant quad) {
         new Thread(() -> {
-//            try {
-//                Thread.sleep(10000);
-//                System.out.println("3 more seconds");
-//                Thread.sleep(3000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
             Tile[][] array = tileManager.getSubArray(quad);
 
             HashMap<Tile, Node> graph = new HashMap<>();
             Node start = new Node(graph, array, array[0][0], quad, tileManager);
             Node goal = new Node(graph, array, array[array[0].length-1][array.length-1], quad, tileManager);
             List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
+            if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
             for (Tile t: tiles) t.setTileColor(Color.RED);
-            goal.tile().setTileColor(Color.RED);
         }).start();
     }
 
@@ -59,11 +52,11 @@ public class EnemyController {
             Tile[][] array = tileManager.getSubArray(quad);
 
             HashMap<Tile, Node> graph = new HashMap<>();
-            Node start = new Node(graph, array, array[0][0], quad, tileManager);
-            Node goal = new Node(graph, array, array[array[0].length-1][array.length-1], quad, tileManager);
-            List<Tile> tiles = Dijkstras.runDijkstras(start, goal);
+            Node start = new Node(graph, array, array[array.length-1][0], quad, tileManager);
+            Node goal = new Node(graph, array, array[0][array.length-1], quad, tileManager);
+            List<Tile> tiles = Dijkstras.runDijkstras(start, goal, graph.values());
+            if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
             for (Tile t: tiles) t.setTileColor(Color.RED);
-            goal.tile().setTileColor(Color.RED);
         }).start();
     }
 
