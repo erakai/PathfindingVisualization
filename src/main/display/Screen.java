@@ -2,6 +2,7 @@ package main.display;
 
 import main.core.Updatable;
 import main.display.hud.HUDManager;
+import main.display.hud.RunButton;
 import main.entities.EntitySpawner;
 import main.util.Globals;
 import main.util.ResourceManager;
@@ -27,10 +28,11 @@ public class Screen extends JPanel {
     private EntitySpawner spawner;
     private HUDManager hud;
     private Input input;
+    private boolean ran = false;
 
     public Screen() {
         //Set the size of the screen to the (number of columns * their size, number of rows * their size)
-        setPreferredSize(new Dimension((int)(Globals.constant("TILE_SIZE") * Globals.constant("COLUMN_#")),
+        setPreferredSize(new Dimension((int)(Globals.constant("TILE_SIZE") * Globals.constant("COLUMN_#") + 100),
                 (int)(Globals.constant("TILE_SIZE") * Globals.constant("ROW_#"))));
         setBackground(Color.GRAY);
 
@@ -57,7 +59,6 @@ public class Screen extends JPanel {
         }
 
         new Thread(this::gameLoop).start();
-        new Thread(() -> spawner.visualize(tileManager)).start();
     }
 
     /**
@@ -90,6 +91,10 @@ public class Screen extends JPanel {
                 e.printStackTrace();
             }
 
+            if (RunButton.RUN && !ran) {
+                new Thread(() -> spawner.visualize(tileManager)).start();
+                ran = true;
+            }
         }
     }
 

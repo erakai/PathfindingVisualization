@@ -1,6 +1,7 @@
 package model;
 
 import main.display.Tile;
+import main.util.Globals;
 import model.service.Node;
 
 import java.awt.*;
@@ -59,7 +60,7 @@ public class AStar {
                         neighborNode.tile().setTileColor(new Color( (calculated > 0 && (calculated / 2) < 255) ? calculated / 2 : 255,  (calculated > 0 && (calculated / 2) < 255) ? calculated / 2 : 255, (calculated > 0 && (calculated / 2) < 255) ? calculated / 2 : 255));
 
                         try {
-                            Thread.sleep(20 / minimumNode.neighbors().size());
+                            Thread.sleep((int)Globals.constant("DELAY_IN_ALGORITHMS") / minimumNode.neighbors().size());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

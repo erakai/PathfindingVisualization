@@ -1,11 +1,13 @@
 package model;
 
 import main.display.Tile;
+import main.util.Globals;
 import model.service.Node;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class KianStar {
@@ -24,7 +26,7 @@ public class KianStar {
             current = current.neighbors().get(randomNum);
             if(!current.tile().isOccupied()) {
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep((int) Globals.constant("DELAY_IN_ALGORITHMS"));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

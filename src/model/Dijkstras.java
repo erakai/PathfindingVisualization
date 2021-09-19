@@ -1,6 +1,7 @@
 package model;
 
 import main.display.Tile;
+import main.util.Globals;
 import model.service.Node;
 
 import java.awt.*;
@@ -35,7 +36,7 @@ public class Dijkstras {
             }
 
             try {
-                Thread.sleep(20);
+                Thread.sleep((int) Globals.constant("DELAY_IN_ALGORITHMS"));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

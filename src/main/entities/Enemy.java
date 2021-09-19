@@ -29,8 +29,8 @@ public class Enemy extends Entity {
     @Override
     public void render(Graphics g) {
         //x,y,width,height
-        g.setColor(Color.green);
-        int radius = (int) (Globals.constant("TILE_SIZE") / 2);
-        g.fillOval(getLocation().getX(), getLocation().getY(), radius*2, radius*2);
+        g.setColor(new Color(0, 148, 212));
+        int radius = (int) (Globals.constant("TILE_SIZE"));
+        g.fillRect(getLocation().getX(), getLocation().getY(), radius, radius);
     }
 }

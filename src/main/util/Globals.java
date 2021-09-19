@@ -28,6 +28,7 @@ public class Globals {
         createConstant("TILE_SIZE", 24);
         createConstant("ROW_#", 29); // Row and Column # must always be 1 more than a multiple of 4
         createConstant("COLUMN_#", 29);
+        createConstant("DELAY_IN_ALGORITHMS", 20);
     }
 
     public static void createConstant(String name, double value) {

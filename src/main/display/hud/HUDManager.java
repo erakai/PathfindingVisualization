@@ -1,8 +1,5 @@
 package main.display.hud;
 
-import main.core.Updatable;
-import main.display.Renderable;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +7,14 @@ import java.util.List;
 public class HUDManager implements HUDComponent {
     private List<HUDComponent> components;
 
+    public static RunButton run;
+
     public HUDManager() {
         components = new ArrayList<>();
 
+        run = new RunButton();
         components.add(new QuadrantDivider());
+        components.add(run);
     }
 
     @Override

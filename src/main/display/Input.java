@@ -1,5 +1,6 @@
 package main.display;
 
+import main.display.hud.HUDManager;
 import main.entities.Player;
 import main.util.Globals;
 
@@ -94,6 +95,7 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
             }
         } catch (Exception ignored) {}
 
+        HUDManager.run.checkPressed(x, y);
     }
 
     @Override

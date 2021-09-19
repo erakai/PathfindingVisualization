@@ -36,14 +36,6 @@ public class EntitySpawner implements Updatable, Renderable {
     }
 
     public void visualize(TileManager tm) {
-        try {
-            Thread.sleep(10000);
-            System.out.println("3 more seconds");
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         for (Enemy e: enemies) {
             e.runController(tm);
         }

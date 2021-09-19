@@ -1,13 +1,13 @@
 package model;
 
 import main.display.Tile;
-import model.service.Direction;
+import main.util.Globals;
 import model.service.Node;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Queue;
+import java.util.*;
 
 /**
  * Simplest pathfinding Algorithm
@@ -29,7 +29,7 @@ public class BreadthFirst {
 
                 n.tile().setTileColor(Color.BLUE);
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep((int) Globals.constant("DELAY_IN_ALGORITHMS"));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
