@@ -14,11 +14,11 @@ import java.awt.event.MouseListener;
  * We can declare what we want our input to do in these methods, and then add Input to Screen to make it work.
  */
 public class Input implements MouseListener, KeyListener {
-    private Player p;
+    private Player player;
     private TileManager tileManager;
 
-    public Input(Player p, TileManager tileManager){
-        this.p = p;
+    public Input(Player player, TileManager tileManager){
+        this.player = player;
         this.tileManager = tileManager;
     }
 
@@ -27,33 +27,30 @@ public class Input implements MouseListener, KeyListener {
         // For example:
         // if (e.getKeyChar() == 'a') doThing();
     }
+
     //player controls movement of player with arrow keys
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == e.VK_UP) {
-            if (p.getLocation().getY() <= 0)
-            {} else {
-                p.getLocation().setY(p.getLocation().getY() - 32);
+            if (player.getLocation().getY() <= 0) {
+                player.getLocation().setY(player.getLocation().getY() - 32);
             }
         }
         //(p.getLocation().getY() <= 0)
         if (e.getKeyCode() == e.VK_DOWN) {
-            if (p.getLocation().getY() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("ROW_#")-1))
-            {} else {
-                p.getLocation().setY(p.getLocation().getY() + 32);
+            if (player.getLocation().getY() <= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("ROW_#")-1)) {
+                player.getLocation().setY(player.getLocation().getY() + 32);
             }
         }
         if(e.getKeyCode() == e.VK_LEFT) {
-            if (p.getLocation().getX() <= 0)
-            {} else {
-                p.getLocation().setX(p.getLocation().getX() - 32);
+            if (player.getLocation().getX() >= 0) {
+                player.getLocation().setX(player.getLocation().getX() - 32);
             }
         }
         //works
         if (e.getKeyCode() == e.VK_RIGHT) {
-            if (p.getLocation().getX() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("COLUMN_#")-1))
-            {} else {
-                p.getLocation().setX(p.getLocation().getX() + 32);
+            if (player.getLocation().getX() <= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("COLUMN_#")-1)) {
+                player.getLocation().setX(player.getLocation().getX() + 32);
             }
         }
     }

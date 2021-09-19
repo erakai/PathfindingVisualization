@@ -2,6 +2,7 @@ package main.display;
 
 import main.core.Updatable;
 import main.entities.Enemy;
+import main.entities.EntitySpawner;
 import main.entities.Player;
 import main.util.Globals;
 import main.util.Location;
@@ -25,6 +26,7 @@ public class Screen extends JPanel {
     private final List<Updatable> updatableRemove = new ArrayList<>();
 
     private TileManager tileManager;
+    private EntitySpawner spawner;
     private Input input;
 
     public Screen() {
@@ -33,19 +35,14 @@ public class Screen extends JPanel {
                 (int)(Globals.constant("TILE_SIZE") * Globals.constant("ROW_#"))));
         setBackground(Color.GRAY);
 
-        Player player = new Player(new Location(12,12));
-        Enemy enemy1 = new Enemy(new Location(0,0));
-        Enemy enemy2 = new Enemy(new Location(24,0));
-        Enemy enemy3 = new Enemy(new Location(0,24));
-        Enemy enemy4 = new Enemy(new Location(24,24));
         tileManager = new TileManager();
         addRenderable(tileManager);
-        addRenderable(enemy1);
-        addRenderable(enemy2);
-        addRenderable(enemy3);
-        addRenderable(enemy4);
-        addRenderable(player);
-        input = new Input(player, tileManager);
+
+        spawner = new EntitySpawner();
+        addRenderable(spawner);
+        addUpdatable(spawner);
+
+        input = new Input(spawner.getPlayer(), tileManager);
         this.addKeyListener(input);
         this.addMouseListener(input);
 
