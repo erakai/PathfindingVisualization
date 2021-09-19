@@ -53,7 +53,7 @@ public class EntityController {
 
             HashMap<Tile, Node> graph = new HashMap<>();
             Node start = new Node(graph, array, array[array.length-1][0], quad, tileManager);
-            Node goal = new Node(graph, array, array[2][array.length-3], quad, tileManager);
+            Node goal = new Node(graph, array, array[0][array.length-1], quad, tileManager);
             List<Tile> tiles = Dijkstras.runDijkstras(start, goal, graph.values());
             if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
             for (Tile t: tiles) t.setTileColor(Color.RED);

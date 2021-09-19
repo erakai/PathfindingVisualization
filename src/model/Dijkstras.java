@@ -30,7 +30,7 @@ public class Dijkstras {
         nodeCosts.put(start, 0);
         visitedNodes.add(start);
 
-        while (nodeCosts.containsValue(Integer.MAX_VALUE)) {
+        while (visitedNodes.size() <= graph.size()) {
             Node minimumNode = start;
             int minCost = Integer.MAX_VALUE;
             for (Node n: nodeCosts.keySet()) {
@@ -48,7 +48,6 @@ public class Dijkstras {
             minimumNode.tile().setTileColor(Color.darkGray);
 
             visitedNodes.add(minimumNode);
-
             if (minimumNode.equals(goal)) {
                 Node current = minimumNode;
                 while (path.containsKey(current)) {
@@ -57,14 +56,16 @@ public class Dijkstras {
                 }
                 break;
             }
+
             for (Node neighborNode: minimumNode.neighbors()) {
                 if (!visitedNodes.contains(neighborNode)) {
                     int neighborCost = 1;
-                    if (neighborNode.tile().isOccupied()) neighborCost = Integer.MAX_VALUE/2;
+                    if (neighborNode.tile().isOccupied()) neighborCost = Integer.MAX_VALUE - minCost;
                     nodeCosts.put(neighborNode, minCost + neighborCost);
                     path.put(neighborNode, minimumNode);
                 }
             }
+
         }
 
         pathToGoal.add(start);
