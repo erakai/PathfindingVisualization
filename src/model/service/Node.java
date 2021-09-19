@@ -23,7 +23,7 @@ public class Node {
         neighbors = new ArrayList<>();
         graph.put(t, this);
 
-        if (t.getLocation().getTileY() > 0) {
+        if (tm.getTranslatedTileY(t.getLocation().getTileY(), quad) > 0) {
             Tile topNeighbor = array[tm.getTranslatedTileX(t.getLocation().getTileX(), quad)]
                     [tm.getTranslatedTileY(t.getLocation().getTileY() - 1, quad)];
             if (!topNeighbor.isOccupied()) {
@@ -34,7 +34,7 @@ public class Node {
                 }
             }
         }
-        if (t.getLocation().getTileX() > 0) {
+        if (tm.getTranslatedTileX(t.getLocation().getTileX(), quad) > 0) {
             Tile leftNeighbor = array[tm.getTranslatedTileX(t.getLocation().getTileX() - 1, quad)]
                     [tm.getTranslatedTileY(t.getLocation().getTileY(), quad)];
             if (!leftNeighbor.isOccupied()) {
@@ -45,7 +45,7 @@ public class Node {
                 }
             }
         }
-        if (t.getLocation().getTileY() < array.length-1) {
+        if (tm.getTranslatedTileY(t.getLocation().getTileY(), quad) < array.length-1) {
             Tile bottomNeighbor = array[tm.getTranslatedTileX(t.getLocation().getTileX(), quad)]
                     [tm.getTranslatedTileY(t.getLocation().getTileY() + 1, quad)];
             if (!bottomNeighbor.isOccupied()) {
@@ -56,7 +56,7 @@ public class Node {
                 }
             }
         }
-        if (t.getLocation().getTileX() < array[0].length -1) {
+        if (tm.getTranslatedTileX(t.getLocation().getTileX(), quad) < array[0].length -1) {
             Tile rightNeighbor = array[tm.getTranslatedTileX(t.getLocation().getTileX()+1, quad)]
                     [tm.getTranslatedTileY(t.getLocation().getTileY(), quad)];
             if (!rightNeighbor.isOccupied()) {
