@@ -11,12 +11,6 @@ import java.util.List;
 
 public class Dijkstras {
 
-    private static void initVertices(HashMap<Node, Integer> map, Collection<Node> graph) {
-        for (Node n: graph) {
-            map.put(n, Integer.MAX_VALUE);
-        }
-    }
-
     public static List<Tile> runDijkstras (Node start, Node goal, Collection<Node> graph) {
         HashMap<Node, Integer> nodeCosts = new HashMap<>();
         List<Node> visitedNodes = new ArrayList<>();
@@ -74,6 +68,12 @@ public class Dijkstras {
             tiles.add(pathToGoal.get(i).tile());
         }
         return tiles;
+    }
+
+    private static void initVertices(HashMap<Node, Integer> map, Collection<Node> graph) {
+        for (Node n: graph) {
+            map.put(n, Integer.MAX_VALUE);
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package main.entities;
 
 import main.display.Tile;
 import main.display.TileManager;
+import model.AStar;
 import model.BreadthFirst;
 import model.Dijkstras;
 import model.KianStar;
@@ -20,17 +21,10 @@ public class EntityController {
 
     public static void runController(Controller controller, TileManager tileManager, TileManager.Quadrant quad) {
         switch (controller) {
-            case BreadthFirst:
-                runBreadthFirstVisualization(tileManager, quad);
-                break;
-            case Dijkstra:
-                runDijkstrasVisualization(tileManager, quad);
-                break;
-            case AStar:
-                break;
-            case KianStar:
-                runKianStarVisualization(tileManager, quad);
-                break;
+            case BreadthFirst -> runBreadthFirstVisualization(tileManager, quad);
+            case Dijkstra -> runDijkstrasVisualization(tileManager, quad);
+            case AStar -> runAStarVisualization(tileManager, quad);
+            case KianStar -> runKianStarVisualization(tileManager, quad);
         }
     }
 
@@ -60,6 +54,19 @@ public class EntityController {
         }).start();
     }
 
+    private static void runAStarVisualization(TileManager tileManager, TileManager.Quadrant quad) {
+        new Thread(() -> {
+            Tile[][] array = tileManager.getSubArray(quad);
+
+            HashMap<Tile, Node> graph = new HashMap<>();
+            Node start = new Node(graph, array, array[0][array.length - 1], quad, tileManager);
+            Node goal = new Node(graph, array, array[array.length-1][0], quad, tileManager);
+            List<Tile> tiles = AStar.runAStar(start, goal, graph.values());
+            if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
+            for (Tile t : tiles) t.setTileColor(Color.RED);
+        }).start();
+    }
+
     private static void runKianStarVisualization(TileManager tileManager, TileManager.Quadrant quad) {
         new Thread(() -> {
             Tile[][] array = tileManager.getSubArray(quad);
@@ -74,3 +81,5 @@ public class EntityController {
     }
 
 }
+
+
