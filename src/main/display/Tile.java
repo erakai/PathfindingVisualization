@@ -52,6 +52,7 @@ public class Tile implements Renderable{
 
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
+        setTileColor(occupied ? Color.lightGray : Color.BLACK);
     }
 
     public Color getTileColor() {
