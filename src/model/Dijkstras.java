@@ -20,6 +20,9 @@ public class Dijkstras {
     public static List<Tile> runDijkstras (Node start, Node goal, Collection<Node> graph) {
         HashMap<Node, Integer> nodeCosts = new HashMap<>();
         List<Node> visitedNodes = new ArrayList<>();
+        HashMap<Node, Node> path = new HashMap<>();
+        List<Node> pathToGoal = new ArrayList<>();
+
 
         nodeCosts.put(start, 0);
         initVertices(nodeCosts, graph);
@@ -45,17 +48,30 @@ public class Dijkstras {
             minimumNode.tile().setTileColor(Color.darkGray);
 
             visitedNodes.add(minimumNode);
+
+            if (minimumNode.equals(goal)) {
+                Node current = minimumNode;
+                while (path.containsKey(current)) {
+                    pathToGoal.add(current);
+                    current = path.get(current);
+                }
+                break;
+            }
             for (Node neighborNode: minimumNode.neighbors()) {
                 if (!visitedNodes.contains(neighborNode)) {
                     int neighborCost = 1;
                     if (neighborNode.tile().isOccupied()) neighborCost = Integer.MAX_VALUE/2;
                     nodeCosts.put(neighborNode, minCost + neighborCost);
+                    path.put(neighborNode, minimumNode);
                 }
             }
         }
 
+        pathToGoal.add(start);
         List<Tile> tiles = new ArrayList<>();
-
+        for (int i = pathToGoal.size()-1; i > 0; i--) {
+            tiles.add(pathToGoal.get(i).tile());
+        }
         return tiles;
     }
 

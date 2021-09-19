@@ -8,16 +8,16 @@ import java.awt.*;
 
 public class Enemy extends Entity {
     private TileManager.Quadrant quad;
-    private EnemyController.Controller controller;
+    private EntityController.Controller controller;
 
-    public Enemy (Location location, EnemyController.Controller controller, TileManager.Quadrant quad) {
+    public Enemy (Location location, EntityController.Controller controller, TileManager.Quadrant quad) {
         super("Enemy", location, null);
         this.controller = controller;
         this.quad = quad;
     }
 
     public void runController(TileManager tileManager) {
-        EnemyController.runController(controller, tileManager, quad);
+        EntityController.runController(controller, tileManager, quad);
     }
 
     public void update() {

@@ -10,12 +10,12 @@ import java.awt.*;
 import java.util.List;
 import java.util.HashMap;
 
-public class EnemyController {
+public class EntityController {
     public enum Controller {
         BreadthFirst, Dijkstra, AStar, Static;
     }
 
-    private EnemyController() {}
+    private EntityController() {}
 
     public static void runController(Controller controller, TileManager tileManager, TileManager.Quadrant quad) {
         switch (controller) {
@@ -53,7 +53,7 @@ public class EnemyController {
 
             HashMap<Tile, Node> graph = new HashMap<>();
             Node start = new Node(graph, array, array[array.length-1][0], quad, tileManager);
-            Node goal = new Node(graph, array, array[0][array.length-1], quad, tileManager);
+            Node goal = new Node(graph, array, array[2][array.length-3], quad, tileManager);
             List<Tile> tiles = Dijkstras.runDijkstras(start, goal, graph.values());
             if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
             for (Tile t: tiles) t.setTileColor(Color.RED);
