@@ -11,12 +11,12 @@ import java.awt.*;
 import java.util.List;
 import java.util.HashMap;
 
-public class EnemyController {
+public class EntityController {
     public enum Controller {
         BreadthFirst, Dijkstra, AStar, KianStar;
     }
 
-    private EnemyController() {}
+    private EntityController() {}
 
     public static void runController(Controller controller, TileManager tileManager, TileManager.Quadrant quad) {
         switch (controller) {
