@@ -81,6 +81,18 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         pressed = false;
+
+        int x = e.getX();
+        int y = e.getY();
+
+        int tileX = x / (int) Globals.constant("TILE_SIZE");
+        int tileY = y / (int) Globals.constant("TILE_SIZE");
+
+        try {
+            if (!tileManager.getTile(tileX, tileY).isOccupied()) {
+                tileManager.setWall(tileY, tileX);
+            }
+        } catch (Exception ignored) {}
     }
 
     @Override
@@ -102,9 +114,11 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
             int tileX = x / (int) Globals.constant("TILE_SIZE");
             int tileY = y / (int) Globals.constant("TILE_SIZE");
 
-            if (!tileManager.getTile(tileX, tileY).isOccupied()) {
-                tileManager.setWall(tileY, tileX);
-            }
+            try {
+                if (!tileManager.getTile(tileX, tileY).isOccupied()) {
+                    tileManager.setWall(tileY, tileX);
+                }
+            } catch (Exception ignored) {}
         }
     }
 

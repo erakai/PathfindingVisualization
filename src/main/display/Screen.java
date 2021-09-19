@@ -50,34 +50,8 @@ public class Screen extends JPanel {
             e.printStackTrace();
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                gameLoop();
-            }
-        }).start();
+        new Thread(this::gameLoop).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    Thread.sleep(15000);
-                    System.out.println("5 more seconds");
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                HashMap<Tile, Node> graph = new HashMap<>();
-                Node start = new Node(graph, tileManager, tileManager.getTile(1,1));
-                Node goal = new Node(graph, tileManager, tileManager.getTile(11,6));
-                List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
-                for (Tile t: tiles) t.setTileColor(Color.RED);
-                start.tile().setTileColor(Color.GREEN);
-                goal.tile().setTileColor(Color.BLUE);
-            }
-        }).start();
     }
 
     /**
