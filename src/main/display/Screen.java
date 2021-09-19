@@ -42,6 +42,7 @@ public class Screen extends JPanel {
         input = new Input(player, tileManager);
         this.addKeyListener(input);
         this.addMouseListener(input);
+        this.addMouseMotionListener(input);
 
         try {
             ResourceManager.initialize("resources");

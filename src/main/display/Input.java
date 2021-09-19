@@ -3,19 +3,17 @@ package main.display;
 import main.entities.Player;
 import main.util.Globals;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * In Swing input is taken from MouseListeners and KeyListeners.
  *
  * We can declare what we want our input to do in these methods, and then add Input to Screen to make it work.
  */
-public class Input implements MouseListener, KeyListener {
+public class Input implements MouseListener, KeyListener, MouseMotionListener {
     private Player p;
     private TileManager tileManager;
+    private boolean pressed = false;
 
     public Input(Player p, TileManager tileManager){
         this.p = p;
@@ -69,7 +67,7 @@ public class Input implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        pressed = true;
     }
 
     /*
@@ -82,14 +80,7 @@ public class Input implements MouseListener, KeyListener {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
-
-        int tileX = x/(int) Globals.constant("TILE_SIZE");
-        int tileY = y/(int) Globals.constant("TILE_SIZE");
-
-        tileManager.setWall(tileY, tileX);
-
+        pressed = false;
     }
 
     @Override
@@ -102,4 +93,23 @@ public class Input implements MouseListener, KeyListener {
 
     }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if (pressed) {
+            int x = e.getX();
+            int y = e.getY();
+
+            int tileX = x / (int) Globals.constant("TILE_SIZE");
+            int tileY = y / (int) Globals.constant("TILE_SIZE");
+
+            if (!tileManager.getTile(tileX, tileY).isOccupied()) {
+                tileManager.setWall(tileY, tileX);
+            }
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
 }
