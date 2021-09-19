@@ -3,6 +3,7 @@ package main.entities;
 import main.display.Tile;
 import main.display.TileManager;
 import model.BreadthFirst;
+import model.Dijkstras;
 import model.service.Node;
 
 import java.awt.*;
@@ -22,7 +23,7 @@ public class EnemyController {
                 runBreadthFirstVisualization(tileManager, quad);
                 break;
             case Dijkstra:
-
+                runDijkstrasVisualization(tileManager, quad);
                 break;
             case AStar:
 
@@ -35,19 +36,32 @@ public class EnemyController {
 
     private static void runBreadthFirstVisualization(TileManager tileManager, TileManager.Quadrant quad) {
         new Thread(() -> {
-            try {
-                Thread.sleep(10000);
-                System.out.println("3 more seconds");
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(10000);
+//                System.out.println("3 more seconds");
+//                Thread.sleep(3000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             Tile[][] array = tileManager.getSubArray(quad);
 
             HashMap<Tile, Node> graph = new HashMap<>();
-            Node start = new Node(graph, array, array[0][0]);
-            Node goal = new Node(graph, array, array[array[0].length-1][array.length-1]);
+            Node start = new Node(graph, array, array[0][0], quad, tileManager);
+            Node goal = new Node(graph, array, array[array[0].length-1][array.length-1], quad, tileManager);
             List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
+            for (Tile t: tiles) t.setTileColor(Color.RED);
+            goal.tile().setTileColor(Color.RED);
+        }).start();
+    }
+
+    private static void runDijkstrasVisualization(TileManager tileManager, TileManager.Quadrant quad) {
+        new Thread(() -> {
+            Tile[][] array = tileManager.getSubArray(quad);
+
+            HashMap<Tile, Node> graph = new HashMap<>();
+            Node start = new Node(graph, array, array[0][0], quad, tileManager);
+            Node goal = new Node(graph, array, array[array[0].length-1][array.length-1], quad, tileManager);
+            List<Tile> tiles = Dijkstras.runDijkstras(start, goal);
             for (Tile t: tiles) t.setTileColor(Color.RED);
             goal.tile().setTileColor(Color.RED);
         }).start();
