@@ -2,9 +2,11 @@ package main.entities;
 
 import main.core.Updatable;
 import main.display.Renderable;
+import main.util.Globals;
 import main.util.Location;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntitySpawner implements Updatable, Renderable {
@@ -12,11 +14,18 @@ public class EntitySpawner implements Updatable, Renderable {
     private Player player;
 
     public EntitySpawner() {
-        Player player = new Player(new Location(12,12));
+        entities = new ArrayList<>();
+
+        player = new Player(new Location((int) Globals.constant("COLUMN_#") / 2,(int) Globals.constant("ROW_#") / 2));
         Enemy enemy1 = new Enemy(new Location(0,0));
-        Enemy enemy2 = new Enemy(new Location(24,0));
-        Enemy enemy3 = new Enemy(new Location(0,24));
-        Enemy enemy4 = new Enemy(new Location(24,24));
+        Enemy enemy2 = new Enemy(new Location((int) Globals.constant("COLUMN_#")-1,0));
+        Enemy enemy3 = new Enemy(new Location(0,(int) Globals.constant("ROW_#")-1));
+        Enemy enemy4 = new Enemy(new Location((int) Globals.constant("COLUMN_#")-1,(int) Globals.constant("ROW_#")-1));
+
+        entities.add(enemy1);
+        entities.add(enemy2);
+        entities.add(enemy3);
+        entities.add(enemy4);
     }
 
 
