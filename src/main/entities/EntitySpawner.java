@@ -26,7 +26,7 @@ public class EntitySpawner implements Updatable, Renderable {
         Enemy enemy3 = new Enemy(new Location(0,(int) Globals.constant("ROW_#")-1),
                 EntityController.Controller.AStar, TileManager.Quadrant.BL);
         Enemy enemy4 = new Enemy(new Location((int) Globals.constant("COLUMN_#")-1,
-                (int) Globals.constant("ROW_#")-1), EntityController.Controller.Static,
+                (int) Globals.constant("ROW_#")-1), EnemyController.Controller.KianStar,
                 TileManager.Quadrant.BR);
 
         enemies.add(enemy1);
@@ -37,7 +37,7 @@ public class EntitySpawner implements Updatable, Renderable {
 
     public void visualize(TileManager tm) {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(0);
             System.out.println("3 more seconds");
             Thread.sleep(3000);
         } catch (InterruptedException e) {

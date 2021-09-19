@@ -4,6 +4,7 @@ import main.display.Tile;
 import main.display.TileManager;
 import model.BreadthFirst;
 import model.Dijkstras;
+import model.KianStar;
 import model.service.Node;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 
 public class EntityController {
     public enum Controller {
-        BreadthFirst, Dijkstra, AStar, Static;
+        BreadthFirst, Dijkstra, AStar, KianStar;
     }
 
     private EntityController() {}
@@ -26,10 +27,9 @@ public class EntityController {
                 runDijkstrasVisualization(tileManager, quad);
                 break;
             case AStar:
-
                 break;
-            case Static:
-
+            case KianStar:
+                runKianStarVisualization(tileManager, quad);
                 break;
         }
     }
@@ -55,6 +55,19 @@ public class EntityController {
             Node start = new Node(graph, array, array[array.length-1][0], quad, tileManager);
             Node goal = new Node(graph, array, array[0][array.length-1], quad, tileManager);
             List<Tile> tiles = Dijkstras.runDijkstras(start, goal, graph.values());
+            if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
+            for (Tile t: tiles) t.setTileColor(Color.RED);
+        }).start();
+    }
+
+    private static void runKianStarVisualization(TileManager tileManager, TileManager.Quadrant quad) {
+        new Thread(() -> {
+            Tile[][] array = tileManager.getSubArray(quad);
+
+            HashMap<Tile, Node> graph = new HashMap<>();
+            Node start = new Node(graph, array, array[array[0].length-1][array.length-1], quad, tileManager);
+            Node goal = new Node(graph, array, array[0][0], quad, tileManager);
+            List<Tile> tiles = KianStar.runHeadlessChicken(start, goal);
             if (!tiles.isEmpty() && !tiles.contains(goal.tile())) tiles.add(goal.tile());
             for (Tile t: tiles) t.setTileColor(Color.RED);
         }).start();
