@@ -19,20 +19,21 @@ public class KianStar {
 
         current = start;
         while (current != goal) {
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             if (current.equals(goal)) break;
             randomNum = ThreadLocalRandom.current().nextInt(0,  current.neighbors().size());
             current = current.neighbors().get(randomNum);
-            tiles.add(current.tile());
-            if(current.tile().getTileColor() == Color.black)
-                current.tile().setTileColor(Color.white);
-            else
-                current.tile().setTileColor(current.tile().getTileColor().darker());
+            if(!current.tile().isOccupied()) {
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                tiles.add(current.tile());
+                if (current.tile().getTileColor() == Color.black)
+                    current.tile().setTileColor(Color.white);
+                else
+                    current.tile().setTileColor(current.tile().getTileColor().darker());
+            }
         }
 
 
