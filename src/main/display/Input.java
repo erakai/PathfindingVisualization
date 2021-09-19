@@ -27,15 +27,12 @@ public class Input implements MouseListener, KeyListener {
         // For example:
         // if (e.getKeyChar() == 'a') doThing();
     }
-
+    //player controls movement of player with arrow keys
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("KEY PRESSED HOLY SHIT");
-        System.out.println((int)Globals.constant("TILE_SIZE") * (int)Globals.constant("COLUMN_#"));
         if (e.getKeyCode() == e.VK_UP) {
             if (p.getLocation().getY() <= 0)
             {} else {
-                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
                 p.getLocation().setY(p.getLocation().getY() - 32);
             }
         }
@@ -43,14 +40,12 @@ public class Input implements MouseListener, KeyListener {
         if (e.getKeyCode() == e.VK_DOWN) {
             if (p.getLocation().getY() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("ROW_#")-1))
             {} else {
-                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
                 p.getLocation().setY(p.getLocation().getY() + 32);
             }
         }
         if(e.getKeyCode() == e.VK_LEFT) {
             if (p.getLocation().getX() <= 0)
             {} else {
-                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
                 p.getLocation().setX(p.getLocation().getX() - 32);
             }
         }
@@ -58,7 +53,6 @@ public class Input implements MouseListener, KeyListener {
         if (e.getKeyCode() == e.VK_RIGHT) {
             if (p.getLocation().getX() >= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("COLUMN_#")-1))
             {} else {
-                System.out.println("HOLY FUCKING SHIT IS THAT A MOTHERFUCKING AMONG US REFERENCE");
                 p.getLocation().setX(p.getLocation().getX() + 32);
             }
         }
