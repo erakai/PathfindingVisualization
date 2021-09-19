@@ -15,19 +15,38 @@ import java.util.List;
  * @author Kian Nowrouzi
  */
 public class TileManager implements Renderable {
-    private Tile[][] tileArray;
-    private int rows, columns, fullSize;
+    private final Tile[][] tileArray;
+    private Tile[][] TLArray, BLArray, TRArray, BRArray;
+    private final int rows, columns;
 
     public TileManager() {
         rows = (int) Globals.constant("ROW_#");
         columns = (int) Globals.constant("COLUMN_#");
-        fullSize = rows*columns;
-        tileArray= new Tile[rows][columns];
+        tileArray= new Tile[columns][rows];
 
-        populateTiles();
+        populateMainArray();
+        populateSubArrays();
     }
 
-    private void populateTiles() {
+    private void populateSubArrays() {
+        int subRows = ((int) Globals.constant("ROW_#") - 1) / 4;
+        int subColumns = ((int) Globals.constant("COLUMN_#") - 1) / 4;
+        TLArray = new Tile[subColumns][subRows];
+        BLArray = new Tile[subColumns][subRows];
+        TRArray = new Tile[subColumns][subRows];
+        BRArray = new Tile[subColumns][subRows];
+
+        for (int i = 0; i < subRows; i++) {
+            for (int j = 0; j < subColumns; j++) {
+                TLArray[j][i] = getTile(j, i);
+                BLArray[j][i] = getTile(j, i + subRows);
+                TRArray[j][i] = getTile(j + subColumns, i);
+                BRArray[j][i] = getTile(j + subColumns, i + subColumns);
+            }
+        }
+    }
+
+    private void populateMainArray() {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
                 tileArray[i][j] = new Tile(new Location(i, j));
@@ -57,13 +76,44 @@ public class TileManager implements Renderable {
         return columns;
     }
 
-    public int getFullSize() {
-        return fullSize;
+    public Tile[][] getTileArray() {
+        return tileArray;
+    }
+
+    public Tile[][] getTLArray() {
+        return TLArray;
+    }
+
+    public void setTLArray(Tile[][] TLArray) {
+        this.TLArray = TLArray;
+    }
+
+    public Tile[][] getBLArray() {
+        return BLArray;
+    }
+
+    public void setBLArray(Tile[][] BLArray) {
+        this.BLArray = BLArray;
+    }
+
+    public Tile[][] getTRArray() {
+        return TRArray;
+    }
+
+    public void setTRArray(Tile[][] TRArray) {
+        this.TRArray = TRArray;
+    }
+
+    public Tile[][] getBRArray() {
+        return BRArray;
+    }
+
+    public void setBRArray(Tile[][] BRArray) {
+        this.BRArray = BRArray;
     }
 
     //makes a tile green and impassable (a wall)
     public void setWall(int row, int column) {
-        tileArray[column][row].setTileColor(Color.green);
         tileArray[column][row].setOccupied(true);
     }
 }
