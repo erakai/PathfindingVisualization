@@ -11,7 +11,7 @@ import java.awt.event.*;
  * We can declare what we want our input to do in these methods, and then add Input to Screen to make it work.
  */
 public class Input implements MouseListener, KeyListener, MouseMotionListener {
-    private Player p;
+    private Player player;
 
     private TileManager tileManager;
     private boolean pressed = false;
@@ -32,24 +32,24 @@ public class Input implements MouseListener, KeyListener, MouseMotionListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == e.VK_UP) {
             if (player.getLocation().getY() >= 0) {
-                player.getLocation().setY(player.getLocation().getY() - 32);
+                player.getLocation().setY(player.getLocation().getY() - (int) Globals.constant("TILE_SIZE"));
             }
         }
         //(p.getLocation().getY() <= 0)
         if (e.getKeyCode() == e.VK_DOWN) {
             if (player.getLocation().getY() <= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("ROW_#")-1)) {
-                player.getLocation().setY(player.getLocation().getY() + 32);
+                player.getLocation().setY(player.getLocation().getY() + (int) Globals.constant("TILE_SIZE"));
             }
         }
         if(e.getKeyCode() == e.VK_LEFT) {
             if (player.getLocation().getX() >= 0) {
-                player.getLocation().setX(player.getLocation().getX() - 32);
+                player.getLocation().setX(player.getLocation().getX() - (int) Globals.constant("TILE_SIZE"));
             }
         }
         //works
         if (e.getKeyCode() == e.VK_RIGHT) {
             if (player.getLocation().getX() <= (int)Globals.constant("TILE_SIZE") * ((int)Globals.constant("COLUMN_#")-1)) {
-                player.getLocation().setX(player.getLocation().getX() + 32);
+                player.getLocation().setX(player.getLocation().getX() + (int) Globals.constant("TILE_SIZE"));
             }
         }
     }
