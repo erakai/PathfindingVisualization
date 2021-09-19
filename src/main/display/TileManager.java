@@ -2,13 +2,8 @@ package main.display;
 
 import main.util.Globals;
 import main.util.Location;
-import model.BreadthFirst;
-import model.service.Node;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /** Basically just a grid setup of tiles for individual/mass manipulation and different colors and organization
  *
@@ -17,20 +12,33 @@ import java.util.List;
 public class TileManager implements Renderable {
     private final Tile[][] tileArray;
     private Tile[][] TLArray, BLArray, TRArray, BRArray;
-    private final int rows, columns;
+    private int rows, columns, subRows, subColumns;
+
+    public enum Quadrant {
+        TL, BL, TR, BR;
+    }
 
     public TileManager() {
         rows = (int) Globals.constant("ROW_#");
         columns = (int) Globals.constant("COLUMN_#");
-        tileArray= new Tile[columns][rows];
+        tileArray = new Tile[columns][rows];
 
         populateMainArray();
         populateSubArrays();
     }
 
+    public Tile[][] getSubArray(Quadrant quad) {
+        return switch (quad) {
+            case TL -> getTLArray();
+            case BL -> getBLArray();
+            case TR -> getTRArray();
+            case BR -> getBRArray();
+        };
+    }
+
     private void populateSubArrays() {
-        int subRows = ((int) Globals.constant("ROW_#") - 1) / 4;
-        int subColumns = ((int) Globals.constant("COLUMN_#") - 1) / 4;
+        subRows = ((int) Globals.constant("ROW_#") - 1) / 2;
+        subColumns = ((int) Globals.constant("COLUMN_#") - 1) / 2;
         TLArray = new Tile[subColumns][subRows];
         BLArray = new Tile[subColumns][subRows];
         TRArray = new Tile[subColumns][subRows];
@@ -39,9 +47,9 @@ public class TileManager implements Renderable {
         for (int i = 0; i < subRows; i++) {
             for (int j = 0; j < subColumns; j++) {
                 TLArray[j][i] = getTile(j, i);
-                BLArray[j][i] = getTile(j, i + subRows);
-                TRArray[j][i] = getTile(j + subColumns, i);
-                BRArray[j][i] = getTile(j + subColumns, i + subColumns);
+                BLArray[j][i] = getTile(j, i + subRows + 1);
+                TRArray[j][i] = getTile(j + subColumns + 1, i);
+                BRArray[j][i] = getTile(j + subColumns + 1, i + subColumns + 1);
             }
         }
     }
@@ -61,6 +69,20 @@ public class TileManager implements Renderable {
                 getTile(i, j).render(g);
             }
         }
+    }
+
+    public int getTranslatedTileX(int tileX, Quadrant quad) {
+        return switch (quad) {
+            case TL, BL -> tileX;
+            case TR, BR -> tileX - subRows - 1;
+        };
+    }
+
+    public int getTranslatedTileY(int tileY, Quadrant quad) {
+        return switch (quad) {
+            case TL, TR -> tileY;
+            case BL, BR -> tileY - subColumns - 1;
+        };
     }
 
     public Tile getTile(int column, int row) {

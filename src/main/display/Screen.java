@@ -2,21 +2,15 @@ package main.display;
 
 import main.core.Updatable;
 import main.display.hud.HUDManager;
-import main.entities.Enemy;
 import main.entities.EntitySpawner;
-import main.entities.Player;
 import main.util.Globals;
-import main.util.Location;
 import main.util.ResourceManager;
-import model.BreadthFirst;
-import model.service.Node;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Screen extends JPanel {
 
@@ -63,7 +57,7 @@ public class Screen extends JPanel {
         }
 
         new Thread(this::gameLoop).start();
-
+        new Thread(() -> spawner.visualize(tileManager)).start();
     }
 
     /**
