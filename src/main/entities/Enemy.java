@@ -17,6 +17,7 @@ public class Enemy extends Entity {
     @Override
     public void render(Graphics g) {
         //x,y,width,height
-        g.fillOval(getLocation().getX(), getLocation().getY(), radius, radius);
+        g.setColor(Color.red);
+        g.fillOval(getLocation().getX(), getLocation().getY(), radius*2, radius*2);
     }
 }
