@@ -49,6 +49,7 @@ public class EnemyController {
             Node goal = new Node(graph, array, array[array[0].length-1][array.length-1]);
             List<Tile> tiles = BreadthFirst.runFloodFill(start, goal);
             for (Tile t: tiles) t.setTileColor(Color.RED);
+            goal.tile().setTileColor(Color.RED);
         }).start();
     }
 
