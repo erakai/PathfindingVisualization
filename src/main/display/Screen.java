@@ -59,6 +59,15 @@ public class Screen extends JPanel {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
+                try {
+                    Thread.sleep(15000);
+                    System.out.println("5 more seconds");
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 HashMap<Tile, Node> graph = new HashMap<>();
                 Node start = new Node(graph, tileManager, tileManager.getTile(1,1));
                 Node goal = new Node(graph, tileManager, tileManager.getTile(11,6));
