@@ -22,7 +22,7 @@ public class Tile implements Renderable{
 
     public Tile(Location loc) {
         this(loc, Color.BLACK);
-        setOutlineColor(Color.WHITE);
+        setOutlineColor(Color.GRAY);
     }
 
     //drawMe

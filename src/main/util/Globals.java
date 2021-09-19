@@ -26,8 +26,8 @@ public class Globals {
         createConstant("DISPLAY_SCALE", 1.0);
         createConstant("FRAMES_PER_SECOND", 30);
         createConstant("TILE_SIZE", 24);
-        createConstant("ROW_#", 28);
-        createConstant("COLUMN_#", 28);
+        createConstant("ROW_#", 29);
+        createConstant("COLUMN_#", 29);
     }
 
     public static void createConstant(String name, double value) {
