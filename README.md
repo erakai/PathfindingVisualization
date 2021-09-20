@@ -8,7 +8,6 @@ time. Each enemy occupies a separate quadrant and is controlled by a separate al
 - Dijkstra
 - A*
 - Breadth First Search
-- 
 
 ## Technology
 - Java Swing
@@ -16,8 +15,6 @@ time. Each enemy occupies a separate quadrant and is controlled by a separate al
 ## Contributors
 - Kai T
 - Kian N
-- Chandler
-- Son H
 
 ## Screenshots
 
